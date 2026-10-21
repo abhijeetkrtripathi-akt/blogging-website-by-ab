@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Local database (auto-seeded by server.js on first run)
+data/
+
+# Playwright CLI artifacts
+.playwright-cli/
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db
