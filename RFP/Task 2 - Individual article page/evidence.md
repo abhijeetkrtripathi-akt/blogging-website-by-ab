@@ -60,11 +60,21 @@
 - `.artifacts/home-desktop.png` (1440×900)
 - `.artifacts/home-mobile.png` (390×844)
 
-## 5. Open issues / follow-ups
+## 5. Firebase deployment (2026-10-21)
+
+- **Live URL:** https://re-vision-blogger.web.app
+- **Project:** `re-vision-blogger` (Blaze, billing linked)
+- **Services:** Hosting, Firestore `(default)`, Firebase Auth (email/password)
+- **Client adapter:** `site/firebase-api.js` routes `/api/*` to Firebase Auth + Firestore when not on `localhost:3000`
+- **Seed script:** `scripts/seed-firestore.mjs`
+- **Verified on deployed site:** 9 article cards, article detail, TOC 5 items, related 3, sign-in ("Hi, Alice"), like toggle, bookmark toggle, comment post, guest auth modal, no horizontal scroll at 390/1440.
+- **Screenshots:** `.artifacts/firebase-home-desktop.png`, `.artifacts/firebase-article-desktop.png`, `.artifacts/firebase-article-mobile.png`
+
+## 6. Open issues / follow-ups
 
 - (none yet)
 
-## 6. Sign-off
+## 7. Sign-off
 
 - [x] All must-priority TCs pass
 - [x] No horizontal scroll at 390×844 and 1440×900

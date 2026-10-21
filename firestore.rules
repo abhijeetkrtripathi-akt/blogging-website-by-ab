@@ -1,0 +1,46 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Articles are public to read, writable only by admins (not exposed here).
+    match /articles/{slug} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Comments: public read, signed-in create, author-only delete.
+    match /comments/{commentId} {
+      allow read: if true;
+      allow create: if request.auth != null
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 1000;
+      allow delete: if request.auth != null
+        && resource.data.userId == request.auth.uid;
+      allow update: if false;
+    }
+
+    // Likes: public read (for counts), signed-in users manage their own like doc.
+    match /likes/{likeId} {
+      allow read: if true;
+      allow create: if request.auth != null
+        && request.resource.data.userId == request.auth.uid;
+      allow delete: if request.auth != null
+        && resource.data.userId == request.auth.uid;
+      allow update: if false;
+    }
+
+    // Bookmarks: private to the owning user.
+    match /bookmarks/{bookmarkId} {
+      allow read: if request.auth != null
+        && resource.data.userId == request.auth.uid;
+      allow create: if request.auth != null
+        && request.resource.data.userId == request.auth.uid;
+      allow delete: if request.auth != null
+        && resource.data.userId == request.auth.uid;
+      allow update: if false;
+    }
+  }
+}

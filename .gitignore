@@ -7,6 +7,10 @@ data/
 # Playwright CLI artifacts
 .playwright-cli/
 
+# Firebase
+firebase-debug.log
+.firebase/
+
 # Logs and OS files
 *.log
 .DS_Store

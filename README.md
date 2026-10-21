@@ -2,6 +2,8 @@
 
 A blogging website built step by step, with a documented RFP (requirements + test cases + evidence) per task.
 
+**Live:** https://re-vision-blogger.web.app — see [`DEPLOYMENT.md`](./DEPLOYMENT.md)
+
 ## Stack
 
 - **Frontend:** React 18 via CDN + Babel (no build step)
